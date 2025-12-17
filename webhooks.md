@@ -639,7 +639,7 @@ test "cleanup" do
 end
 ```
 
-**Important**: Fix from PR #1292 - use `command:` not `class:` for class method calls:
+**Important**: Fix from PR [#1292](https://github.com/basecamp/fizzy/pull/1292) - use `command:` not `class:` for class method calls:
 
 ```yaml
 # RIGHT - calling a class method
@@ -715,7 +715,7 @@ end
 
 ### User-Friendly Action Labels
 
-Map internal event names to user-friendly labels (PR #1161):
+Map internal event names to user-friendly labels (PR [#1161](https://github.com/basecamp/fizzy/pull/1161)):
 
 ```ruby
 # app/helpers/webhooks_helper.rb
@@ -741,7 +741,7 @@ end
 
 ### Event Granularity
 
-Separate similar events for better webhook filtering (PR #1169, #1229):
+Separate similar events for better webhook filtering (PR [#1169](https://github.com/basecamp/fizzy/pull/1169), [#1229](https://github.com/basecamp/fizzy/pull/1229)):
 
 ```ruby
 # Bad - single "card_closed" event for both user and system actions

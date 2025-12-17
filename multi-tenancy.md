@@ -4,7 +4,7 @@
 
 ---
 
-## Path-Based Tenancy with Middleware (#283)
+## Path-Based Tenancy with Middleware ([#283](https://github.com/basecamp/fizzy/pull/283))
 
 Extract tenant from URL paths and "mount" Rails at that prefix:
 
@@ -44,7 +44,7 @@ Rails.application.config.middleware.insert_after Rack::TempfileReaper, AccountSl
 
 **Why path-based**: No wildcard DNS/SSL, simpler local dev, no `/etc/hosts` hacking.
 
-## Current Context Pattern (#168, #279)
+## Current Context Pattern ([#168](https://github.com/basecamp/fizzy/pull/168), [#279](https://github.com/basecamp/fizzy/pull/279))
 
 ```ruby
 class Current < ActiveSupport::CurrentAttributes
@@ -60,7 +60,7 @@ class Current < ActiveSupport::CurrentAttributes
 end
 ```
 
-## ActiveJob Tenant Preservation (#168)
+## ActiveJob Tenant Preservation ([#168](https://github.com/basecamp/fizzy/pull/168))
 
 Automatically capture/restore tenant in background jobs:
 
@@ -105,7 +105,7 @@ end
 
 Uses GlobalID for serialization - works across all job backends.
 
-## Recurring Jobs: Iterate All Tenants (#279)
+## Recurring Jobs: Iterate All Tenants ([#279](https://github.com/basecamp/fizzy/pull/279))
 
 ```ruby
 # Recurring jobs run outside request context
@@ -120,7 +120,7 @@ end
 
 Easy to forget during multi-tenant migration.
 
-## Session Cookie Path Scoping (#879)
+## Session Cookie Path Scoping ([#879](https://github.com/basecamp/fizzy/pull/879))
 
 For simultaneous login to multiple tenants:
 
@@ -137,7 +137,7 @@ end
 
 Without path scoping, cookies from one tenant clobber another.
 
-## Test Setup for Path-Based Tenancy (#879)
+## Test Setup for Path-Based Tenancy ([#879](https://github.com/basecamp/fizzy/pull/879))
 
 ```ruby
 # test_helper.rb
@@ -159,7 +159,7 @@ class ActionDispatch::SystemTestCase
 end
 ```
 
-## Always Scope Controller Lookups (#372)
+## Always Scope Controller Lookups ([#372](https://github.com/basecamp/fizzy/pull/372))
 
 Defense in depth - don't rely solely on middleware:
 
@@ -180,7 +180,7 @@ def set_bubble
 end
 ```
 
-## Default Tenant for Dev Console (#168, #879)
+## Default Tenant for Dev Console ([#168](https://github.com/basecamp/fizzy/pull/168), [#879](https://github.com/basecamp/fizzy/pull/879))
 
 ```ruby
 # config/initializers/tenanting/default_tenant.rb
@@ -193,7 +193,7 @@ end
 
 Makes console work ergonomic without constant tenant switching.
 
-## Solid Cache Multi-Tenant Config (#168, #279)
+## Solid Cache Multi-Tenant Config ([#168](https://github.com/basecamp/fizzy/pull/168), [#279](https://github.com/basecamp/fizzy/pull/279))
 
 Avoid Rails' automatic shard swapping conflicts:
 

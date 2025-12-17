@@ -1,12 +1,12 @@
 # Rails Filtering Patterns: Insights from Fizzy
 
-This guide extracts transferable filtering patterns from Fizzy PRs #115, #116, #138, #567, and #624. These patterns are applicable to any Rails application implementing filtering functionality.
+This guide extracts transferable filtering patterns from Fizzy PRs [#115](https://github.com/basecamp/fizzy/pull/115), [#116](https://github.com/basecamp/fizzy/pull/116), [#138](https://github.com/basecamp/fizzy/pull/138), [#567](https://github.com/basecamp/fizzy/pull/567), and [#624](https://github.com/basecamp/fizzy/pull/624). These patterns are applicable to any Rails application implementing filtering functionality.
 
 ## 1. Filter Object Pattern: Evolution from Controller to PORO
 
 **Pattern**: Extract filtering logic from controllers into dedicated Plain Old Ruby Objects (POROs).
 
-### Evolution Journey (PRs #115, #116)
+### Evolution Journey (PRs [#115](https://github.com/basecamp/fizzy/pull/115), [#116](https://github.com/basecamp/fizzy/pull/116))
 
 **Before**: Logic lived in controller as instance variables and before_action callbacks
 ```ruby
@@ -90,7 +90,7 @@ end
 - **Clarity**: Reader immediately understands what data is being filtered
 - **Separation of concerns**: Controller handles HTTP, filter handles business logic
 
-**Key insight from PR #115**: Don't be afraid to iterate. The initial implementation lived on the model, then moved to a concern, then extracted to a PORO when it became clear the logic didn't belong on the domain model.
+**Key insight from PR [#115](https://github.com/basecamp/fizzy/pull/115)**: Don't be afraid to iterate. The initial implementation lived on the model, then moved to a concern, then extracted to a PORO when it became clear the logic didn't belong on the domain model.
 
 ---
 
@@ -227,11 +227,11 @@ end
 - **Back button works**: Browser history navigation works naturally
 - **Deep linking**: Direct links to filtered views work correctly
 
-**Key insight from PR #138**: The `as_params_without` method is crucial for creating "remove filter" links that preserve other active filters.
+**Key insight from PR [#138](https://github.com/basecamp/fizzy/pull/138)**: The `as_params_without` method is crucial for creating "remove filter" links that preserve other active filters.
 
 ---
 
-## 4. Filter Chips as Links (PR #138)
+## 4. Filter Chips as Links (PR [#138](https://github.com/basecamp/fizzy/pull/138))
 
 **Pattern**: Render active filters as removable chips using links, not forms.
 
@@ -310,7 +310,7 @@ end
 
 ---
 
-## 5. Stimulus Controllers for Filters (PR #567)
+## 5. Stimulus Controllers for Filters (PR [#567](https://github.com/basecamp/fizzy/pull/567))
 
 **Pattern**: Use two complementary Stimulus controllers for rich filtering UX.
 
@@ -461,7 +461,7 @@ export default class extends Controller {
 - **UX**: Keyboard navigation feels like native OS behavior
 - **Responsive**: Debounced filtering prevents lag on large lists
 
-**Key insight from PR #567**: The `filter:changed` event dispatched by the filter controller triggers `navigable-list#reset`, ensuring keyboard selection stays on visible items after filtering.
+**Key insight from PR [#567](https://github.com/basecamp/fizzy/pull/567)**: The `filter:changed` event dispatched by the filter controller triggers `navigable-list#reset`, ensuring keyboard selection stays on visible items after filtering.
 
 ---
 

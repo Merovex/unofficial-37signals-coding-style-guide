@@ -4,7 +4,7 @@
 
 ---
 
-## Structured JSON Logging (#285)
+## Structured JSON Logging ([#285](https://github.com/basecamp/fizzy/pull/285))
 
 ```ruby
 # config/environments/production.rb
@@ -14,7 +14,7 @@ config.structured_logging.logger = ActiveSupport::Logger.new(STDOUT)
 
 Use `rails_structured_logging` gem.
 
-## Multi-Tenant Context (#301)
+## Multi-Tenant Context ([#301](https://github.com/basecamp/fizzy/pull/301))
 
 Inject tenant into every log:
 
@@ -22,7 +22,7 @@ Inject tenant into every log:
 before_action { logger.struct tenant: ApplicationRecord.current_tenant }
 ```
 
-## User Context (#472)
+## User Context ([#472](https://github.com/basecamp/fizzy/pull/472))
 
 Log authenticated user:
 
@@ -33,7 +33,7 @@ def set_current_session(session)
 end
 ```
 
-## Yabeda Metrics Stack (#1112)
+## Yabeda Metrics Stack ([#1112](https://github.com/basecamp/fizzy/pull/1112))
 
 ```ruby
 # Gemfile
@@ -51,7 +51,7 @@ on_worker_boot do
 end
 ```
 
-## Additional Yabeda Modules (#1165)
+## Additional Yabeda Modules ([#1165](https://github.com/basecamp/fizzy/pull/1165))
 
 ```ruby
 gem "yabeda-activejob"
@@ -62,7 +62,7 @@ gem "yabeda-http_requests"
 Yabeda::ActiveJob.install!
 ```
 
-## Log Configuration (#1602)
+## Log Configuration ([#1602](https://github.com/basecamp/fizzy/pull/1602))
 
 ```ruby
 # Silence health checks
@@ -72,7 +72,7 @@ config.silence_healthcheck_path = "/up"
 config.solid_queue.logger = ActiveSupport::Logger.new(STDOUT, level: :info)
 ```
 
-## Console Auditing (#1834)
+## Console Auditing ([#1834](https://github.com/basecamp/fizzy/pull/1834))
 
 For compliance, use `console1984` + `audits1984`:
 
@@ -83,7 +83,7 @@ config.audits1984.base_controller_class = "AdminController"
 
 Requires Active Record Encryption keys in protected environments.
 
-## OpenTelemetry Collector (#1118)
+## OpenTelemetry Collector ([#1118](https://github.com/basecamp/fizzy/pull/1118))
 
 Deploy as sidecar for container metrics:
 

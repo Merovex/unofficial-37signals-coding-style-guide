@@ -9,15 +9,15 @@
 - Merge "prototype quality" code to validate with real usage before cleanup
 - Features evolve through iterations (tenanting: 3 attempts before settling)
 - Don't polish prematurely - real-world usage reveals what matters
-- PR #335 merged as "prototype quality" to validate design first
+- PR [#335](https://github.com/basecamp/fizzy/pull/335) merged as "prototype quality" to validate design first
 
 ## Fix Root Causes, Not Symptoms
 
 **Bad**: Add retry logic for race conditions
-**Good**: Use `enqueue_after_transaction_commit` to prevent the race (#1664)
+**Good**: Use `enqueue_after_transaction_commit` to prevent the race ([#1664](https://github.com/basecamp/fizzy/pull/1664))
 
 **Bad**: Work around CSRF issues on cached pages
-**Good**: Don't HTTP cache pages with forms (#1607)
+**Good**: Don't HTTP cache pages with forms ([#1607](https://github.com/basecamp/fizzy/pull/1607))
 
 ## Vanilla Rails Over Abstractions
 
@@ -29,7 +29,7 @@
 ## DHH's Review Patterns
 
 - Questions indirection: "Is this abstraction earning its keep?"
-- Pushes for directness - collapsed 6 notifier subclasses into 2 (#425)
+- Pushes for directness - collapsed 6 notifier subclasses into 2 ([#425](https://github.com/basecamp/fizzy/pull/425))
 - Prefers explicit over clever (define methods directly vs introspection)
 - Removes "anemic" code that adds layers without value
 
@@ -38,16 +38,16 @@
 - **Naming**: Use positive names (`active` not `not_deleted`, `unpopped`)
 - **DB over AR**: Prefer database constraints over ActiveRecord validations
 - **Migrations**: Use SQL, avoid model references that break future runs
-- **Simplify**: Links over JavaScript when browser affordances suffice (#138)
+- **Simplify**: Links over JavaScript when browser affordances suffice ([#138](https://github.com/basecamp/fizzy/pull/138))
 
 ## When to Extract
 
 - Start in controller, extract when it gets messy
-- Filter logic: controller → model concern → dedicated PORO (#115, #116)
+- Filter logic: controller → model concern → dedicated PORO ([#115](https://github.com/basecamp/fizzy/pull/115), [#116](https://github.com/basecamp/fizzy/pull/116))
 - Don't extract prematurely - wait for pain
 - Rule of three: duplicate twice before abstracting
 
-## Rails 7.1+ `params.expect` (#120)
+## Rails 7.1+ `params.expect` ([#120](https://github.com/basecamp/fizzy/pull/120))
 
 Replace `params.require(:key).permit(...)` with `params.expect(key: [...])`:
 - Returns 400 (Bad Request) instead of 500 for bad params
@@ -61,7 +61,7 @@ params.require(:user).permit(:name, :email)
 params.expect(user: [:name, :email])
 ```
 
-## StringInquirer for Action Predicates (#425)
+## StringInquirer for Action Predicates ([#425](https://github.com/basecamp/fizzy/pull/425))
 
 Instead of string comparisons, use StringInquirer:
 
@@ -78,14 +78,14 @@ def action
 end
 ```
 
-## Caching Constraints Inform Architecture (#119)
+## Caching Constraints Inform Architecture ([#119](https://github.com/basecamp/fizzy/pull/119))
 
 Design caching early - it reveals architectural issues:
 - Can't use `Current.user` in cached partials
 - Solution: Push user-specific logic to Stimulus controllers reading from meta tags
 - Leave FIXME comments when you discover caching conflicts
 
-## Write-Time vs Read-Time Operations (#108)
+## Write-Time vs Read-Time Operations ([#108](https://github.com/basecamp/fizzy/pull/108))
 
 DHH's principle: "All manipulation has to happen when you save, not when you present."
 - Use delegated types for heterogeneous collections needing pagination
@@ -97,9 +97,9 @@ DHH's principle: "All manipulation has to happen when you save, not when you pre
 
 ## Jason Fried: Product-Oriented Development
 
-> From PRs #305, #131, #335, #265, #608
+> From PRs [#305](https://github.com/basecamp/fizzy/pull/305), [#131](https://github.com/basecamp/fizzy/pull/131), [#335](https://github.com/basecamp/fizzy/pull/335), [#265](https://github.com/basecamp/fizzy/pull/265), #608
 
-### Perceived Performance Over Technical Performance (#131)
+### Perceived Performance Over Technical Performance ([#131](https://github.com/basecamp/fizzy/pull/131))
 
 User perception matters more than server metrics. If it feels slow, it is slow.
 
@@ -107,7 +107,7 @@ User perception matters more than server metrics. If it feels slow, it is slow.
 
 **Pattern**: Question live-updating UIs. Sometimes a single "Apply" action feels faster than multiple instant updates.
 
-### Prototype Quality is a Valid Shipping Standard (#335)
+### Prototype Quality is a Valid Shipping Standard ([#335](https://github.com/basecamp/fizzy/pull/335))
 
 Explicitly communicate when code is "prototype quality" - built to validate with real usage:
 
@@ -120,19 +120,19 @@ Ship with enumerated known issues:
 
 **Pattern**: Different features deserve different polish. Ship to learn when uncertain.
 
-### Production Truth Over Local Speculation (#335)
+### Production Truth Over Local Speculation ([#335](https://github.com/basecamp/fizzy/pull/335))
 
 > "It runs slowly on beta which may be simply because the droplet doesn't have sufficient specs. It's quite fast on local dev so this might not be an issue at all on production. It could be that you just merge it as is and there's no problem."
 
 **Pattern**: Real data in production reveals what local testing can't. Ship with monitoring ready.
 
-### Simplify by Removing, Not Just Hiding (#131)
+### Simplify by Removing, Not Just Hiding ([#131](https://github.com/basecamp/fizzy/pull/131))
 
 > "One thing we could try is to not show the chips while the form is open. Then there wouldn't be anything to update live on the page."
 
 **Pattern**: Reduce visible UI states to reduce complexity and edge cases.
 
-### Extend Don't Replace (#608)
+### Extend Don't Replace ([#608](https://github.com/basecamp/fizzy/pull/608))
 
 When adding "Create and add another" button, keep original "Create" flow intact:
 
@@ -150,19 +150,19 @@ private
 
 **Pattern**: Branch with parameters, don't replace routes or create separate endpoints.
 
-### Leverage Robust Systems Creatively (#335)
+### Leverage Robust Systems Creatively ([#335](https://github.com/basecamp/fizzy/pull/335))
 
 > "The whole thing runs through the `Filter` system. It's quite robust and resilient so I got a lot of mileage out of breaking it out into individual forms to get the various sorting and filtering in place."
 
 **Pattern**: Reuse proven systems for new features, even if "there are certainly better ways" - ship with what works.
 
-### Name Technical Debt Without Blocking (#335)
+### Name Technical Debt Without Blocking ([#335](https://github.com/basecamp/fizzy/pull/335))
 
 > "There is also some mess here that we haven't cleaned up since we moved to the cards design. The whole `Bubble` namespace doesn't really make sense anymore but we haven't done anything about it. I'm only pointing that out because it's probably confusing!"
 
 **Pattern**: Acknowledge confusing code, provide context ("exists in main, too"), don't block features on cleanup.
 
-### Feedback as Product Vision, Not Mandate (#131)
+### Feedback as Product Vision, Not Mandate ([#131](https://github.com/basecamp/fizzy/pull/131))
 
 Share vision, not commands:
 - ✅ "I'd imagined this as..."
@@ -176,7 +176,7 @@ Share vision, not commands:
 
 ## Rails Patterns
 
-### Delegated Types for Polymorphism (#124)
+### Delegated Types for Polymorphism ([#124](https://github.com/basecamp/fizzy/pull/124))
 
 Use `delegated_type` instead of traditional polymorphic associations:
 
@@ -197,7 +197,7 @@ end
 
 **Why**: Automatic convenience methods (`message.comment?`, `message.comment`) without manual type checking.
 
-### Store Accessor for JSON Columns (#113)
+### Store Accessor for JSON Columns ([#113](https://github.com/basecamp/fizzy/pull/113))
 
 Use `store_accessor` for structured JSON storage:
 
@@ -211,7 +211,7 @@ end
 
 **Why**: Type casting, validation, and cleaner API (`view.order_by` vs `view.filters['order_by']`).
 
-### Normalizes for Data Consistency (#1083)
+### Normalizes for Data Consistency ([#1083](https://github.com/basecamp/fizzy/pull/1083))
 
 Use `normalizes` to clean data before validation (Rails 7.1+):
 
@@ -226,7 +226,7 @@ end
 
 **Why**: Ensures data consistency before validation, no `before_validation` callbacks needed.
 
-### Concern Organization by Responsibility (#124)
+### Concern Organization by Responsibility ([#124](https://github.com/basecamp/fizzy/pull/124))
 
 Split models into focused concerns:
 
@@ -247,7 +247,7 @@ end
 - Must be cohesive (related functionality together)
 - Don't create concerns just to reduce file size
 
-### Scopes Named for Business Concepts (#124)
+### Scopes Named for Business Concepts ([#124](https://github.com/basecamp/fizzy/pull/124))
 
 ```ruby
 # Good - business-focused
@@ -259,7 +259,7 @@ scope :without_pop, -> { ... }
 scope :no_assignments, -> { ... }
 ```
 
-### Transaction Wrapping (#124)
+### Transaction Wrapping ([#124](https://github.com/basecamp/fizzy/pull/124))
 
 Wrap related updates for consistency:
 
@@ -274,7 +274,7 @@ end
 
 **When to use**: Multi-step operations, parent + children records, state transitions.
 
-### Touch Chains for Cache Invalidation (#124)
+### Touch Chains for Cache Invalidation ([#124](https://github.com/basecamp/fizzy/pull/124))
 
 ```ruby
 class Comment < ApplicationRecord

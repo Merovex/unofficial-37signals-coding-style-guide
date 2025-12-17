@@ -6,7 +6,7 @@
 
 ## Environment-Specific Credentials
 
-### Per-Environment Credentials Files (#554)
+### Per-Environment Credentials Files ([#554](https://github.com/basecamp/fizzy/pull/554))
 Move from a single `credentials.yml.enc` to environment-specific files:
 
 ```bash
@@ -20,7 +20,7 @@ config/credentials/staging.yml.enc
 - Prevents accidental secret sharing between environments
 - Cleaner separation of concerns
 
-### RAILS_MASTER_KEY Pattern (#554)
+### RAILS_MASTER_KEY Pattern ([#554](https://github.com/basecamp/fizzy/pull/554))
 ```bash
 # .kamal/secrets.production
 SECRETS=$(kamal secrets fetch --adapter 1password \
@@ -35,7 +35,7 @@ RAILS_MASTER_KEY=$(kamal secrets extract RAILS_MASTER_KEY $SECRETS)
 
 ## YAML Configuration DRYness
 
-### Anchor References Over Inheritance (#584)
+### Anchor References Over Inheritance ([#584](https://github.com/basecamp/fizzy/pull/584))
 
 ```yaml
 # Before - verbose repetition
@@ -60,7 +60,7 @@ staging: *production
 - Easier to add new environments
 - Standard YAML feature, no magic
 
-### Apply to All Config Files (#584)
+### Apply to All Config Files ([#584](https://github.com/basecamp/fizzy/pull/584))
 Use this pattern consistently across:
 - `config/cable.yml`
 - `config/cache.yml`
@@ -70,7 +70,7 @@ Use this pattern consistently across:
 
 ## Environment-Specific Configuration
 
-### Explicit RAILS_ENV in Deploy Files (#554, #584)
+### Explicit RAILS_ENV in Deploy Files ([#554](https://github.com/basecamp/fizzy/pull/554), [#584](https://github.com/basecamp/fizzy/pull/584))
 
 ```yaml
 # config/deploy.production.yml
@@ -89,7 +89,7 @@ env:
 - Prevents environment confusion
 - Clear documentation of which environment you're deploying to
 
-### Environment Files Inherit from Production (#554, #584)
+### Environment Files Inherit from Production ([#554](https://github.com/basecamp/fizzy/pull/554), [#584](https://github.com/basecamp/fizzy/pull/584))
 
 ```ruby
 # config/environments/beta.rb
@@ -121,7 +121,7 @@ end
 
 ## Test Environment Handling
 
-### Avoid Requiring Credentials in Tests (#647)
+### Avoid Requiring Credentials in Tests ([#647](https://github.com/basecamp/fizzy/pull/647))
 
 ```ruby
 # Bad - requires encrypted credentials to run tests
@@ -146,7 +146,7 @@ http_basic_authenticate_with(
 
 ## Environment Variable Precedence
 
-### ENV Takes Priority Over Config (#1976)
+### ENV Takes Priority Over Config ([#1976](https://github.com/basecamp/fizzy/pull/1976))
 
 ```ruby
 # Bad - config.x can't be overridden
@@ -164,7 +164,7 @@ report_uri = ENV.fetch("CSP_REPORT_URI") {
 - Clearer intent: "presence of ENV → use it"
 - Better for containerized deployments
 
-### Consistent Pattern for Boolean ENV Vars (#1976)
+### Consistent Pattern for Boolean ENV Vars ([#1976](https://github.com/basecamp/fizzy/pull/1976))
 
 ```ruby
 # Check for key presence first, then parse value
@@ -182,7 +182,7 @@ end
 
 ## Development Environment Configuration
 
-### Feature Flags for Local Development (#863)
+### Feature Flags for Local Development ([#863](https://github.com/basecamp/fizzy/pull/863))
 
 ```ruby
 # Bad - conditional association breaks test/dev
@@ -199,7 +199,7 @@ belongs_to :signal_account, optional: true
 - Tests and development work the same way
 - Feature flags control behavior, not structure
 
-### Development Scripts for Flexibility (#863)
+### Development Scripts for Flexibility ([#863](https://github.com/basecamp/fizzy/pull/863))
 
 Create helper scripts for common dev tasks:
 
@@ -221,7 +221,7 @@ end
 - Repeatable setup processes
 - Self-documenting development tasks
 
-### Smart Seed Data (#863)
+### Smart Seed Data ([#863](https://github.com/basecamp/fizzy/pull/863))
 
 ```ruby
 # db/seeds.rb
@@ -248,7 +248,7 @@ create_tenant "production-like"
 - Work offline with `bare: true` tenants
 - Test different data scenarios easily
 
-### Dynamic Development Output (#863)
+### Dynamic Development Output ([#863](https://github.com/basecamp/fizzy/pull/863))
 
 ```bash
 # bin/dev - shows available tenants dynamically
@@ -266,7 +266,7 @@ EOF
 
 ## Kamal Deployment Configuration
 
-### Kamal Secrets Pattern (#554)
+### Kamal Secrets Pattern ([#554](https://github.com/basecamp/fizzy/pull/554))
 
 ```bash
 # .kamal/secrets.production
@@ -286,7 +286,7 @@ RAILS_MASTER_KEY=$(kamal secrets extract RAILS_MASTER_KEY $SECRETS)
 - Environment-specific secret files
 - Combines multiple secret sources (1Password + gh)
 
-### Environment-Specific Deploy Files (#554, #584)
+### Environment-Specific Deploy Files ([#554](https://github.com/basecamp/fizzy/pull/554), [#584](https://github.com/basecamp/fizzy/pull/584))
 
 ```
 config/deploy.yml          # Base configuration
@@ -301,7 +301,7 @@ config/deploy.production.yml # Production overrides
 - Environment-specific SSL/proxy settings
 - Clear separation of deployment concerns
 
-### Kamal Aliases (#554)
+### Kamal Aliases ([#554](https://github.com/basecamp/fizzy/pull/554))
 
 ```yaml
 # config/deploy.yml

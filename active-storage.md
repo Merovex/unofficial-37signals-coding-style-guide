@@ -4,7 +4,7 @@
 
 ---
 
-## Variant Preprocessing (#767)
+## Variant Preprocessing ([#767](https://github.com/basecamp/fizzy/pull/767))
 
 Use `preprocessed: true` to prevent on-the-fly transformations failing on read replicas:
 
@@ -18,7 +18,7 @@ end
 
 Centralize variant definitions in a module.
 
-## Direct Upload Expiry (#773)
+## Direct Upload Expiry ([#773](https://github.com/basecamp/fizzy/pull/773))
 
 Extend expiry for slow uploads (Cloudflare buffering):
 
@@ -34,7 +34,7 @@ def service_url_for_direct_upload(expires_in: ActiveStorage.service_urls_for_dir
 end
 ```
 
-## Large File Preview Limits (#941)
+## Large File Preview Limits ([#941](https://github.com/basecamp/fizzy/pull/941))
 
 Skip previews above size threshold:
 
@@ -48,14 +48,14 @@ module ActiveStorageBlobPreviewable
 end
 ```
 
-## Preview vs Variant (#770)
+## Preview vs Variant ([#770](https://github.com/basecamp/fizzy/pull/770))
 
 - **Variable** (images): `blob.variant(options)`
 - **Previewable** (PDFs, videos): `blob.preview(options)`
 
 Don't conflate them - different operations.
 
-## Avatar Optimization (#1689)
+## Avatar Optimization ([#1689](https://github.com/basecamp/fizzy/pull/1689))
 
 Redirect to blob URL instead of streaming:
 
@@ -69,7 +69,7 @@ def show
 end
 ```
 
-## Mirror Configuration (#557)
+## Mirror Configuration ([#557](https://github.com/basecamp/fizzy/pull/557))
 
 Local primary + cloud backup:
 

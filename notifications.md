@@ -328,7 +328,7 @@ export default class extends Controller {
 
 **View usage**:
 ```erb
-<!-- From PR #208 -->
+<!-- From PR [#208](https://github.com/basecamp/fizzy/pull/208) -->
 <%= tag.div id: "next_page", data: {
   controller: "fetch-on-visible",
   fetch_on_visible_url_value: notifications_path(page: @page.next_param)
@@ -420,7 +420,7 @@ export default class extends Controller {
 **Why it matters**: Follows Rails conventions, clearer routing, easier to test.
 
 ```ruby
-# From PR #405 - Refactored from custom actions to resourceful routes
+# From PR [#405](https://github.com/basecamp/fizzy/pull/405) - Refactored from custom actions to resourceful routes
 
 # BEFORE: Custom actions on NotificationsController
 post "notifications/:id/mark_read"
@@ -533,7 +533,7 @@ end
 **Why it matters**: Ensures emails render consistently across all email clients.
 
 ```erb
-<!-- From PR #974 -->
+<!-- From PR [#974](https://github.com/basecamp/fizzy/pull/974) -->
 <table>
   <tr>
     <td class="avatar__container">
@@ -563,7 +563,7 @@ end
 </style>
 ```
 
-**Group notifications by subject in email** (PR #1574):
+**Group notifications by subject in email** (PR [#1574](https://github.com/basecamp/fizzy/pull/1574)):
 ```erb
 <!-- Aggregate by card to reduce email clutter -->
 <% @notifications.group_by(&:card).each do |card, notifications| %>
@@ -657,10 +657,10 @@ end
 
 ## Further Reading
 
-- **PR #208**: Notification index with pagination
-- **PR #306**: Quieter notifications (subscription vs. watching)
-- **PR #405**: Refactored to RESTful controllers
-- **PR #475**: Broadcasting notification reads
-- **PR #974**: Full bundled email implementation
-- **PR #1448**: Client-side grouping by card
-- **PR #1574**: Email grouping by card
+- **PR [#208](https://github.com/basecamp/fizzy/pull/208)**: Notification index with pagination
+- **PR [#306](https://github.com/basecamp/fizzy/pull/306)**: Quieter notifications (subscription vs. watching)
+- **PR [#405](https://github.com/basecamp/fizzy/pull/405)**: Refactored to RESTful controllers
+- **PR [#475](https://github.com/basecamp/fizzy/pull/475)**: Broadcasting notification reads
+- **PR [#974](https://github.com/basecamp/fizzy/pull/974)**: Full bundled email implementation
+- **PR [#1448](https://github.com/basecamp/fizzy/pull/1448)**: Client-side grouping by card
+- **PR [#1574](https://github.com/basecamp/fizzy/pull/1574)**: Email grouping by card

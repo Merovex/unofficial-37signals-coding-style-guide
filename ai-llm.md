@@ -4,7 +4,7 @@
 
 ---
 
-## Command Pattern with STI (#460, #464, #466)
+## Command Pattern with STI ([#460](https://github.com/basecamp/fizzy/pull/460), [#464](https://github.com/basecamp/fizzy/pull/464), [#466](https://github.com/basecamp/fizzy/pull/466))
 
 Use Single Table Inheritance for command objects:
 
@@ -71,7 +71,7 @@ end
 
 **Key insight**: Commands save themselves AFTER execution, not before. Validates during parsing but only persists successful executions.
 
-## Context Objects for Parsing (#460)
+## Context Objects for Parsing ([#460](https://github.com/basecamp/fizzy/pull/460))
 
 Extract URL context for command awareness:
 
@@ -108,7 +108,7 @@ end
 
 Use `Rails.application.routes.recognize_path` to extract controller/action/params from URL strings.
 
-## Cost Tracking in Microcents (#978)
+## Cost Tracking in Microcents ([#978](https://github.com/basecamp/fizzy/pull/978))
 
 Track LLM costs precisely using microcents (1/1,000,000 of a dollar):
 
@@ -129,7 +129,7 @@ Event::ActivitySummary.create!(
 
 Naming: Use `_in_` particle for unit clarity: `cost_in_microcents` not `cost_microcents`.
 
-## Result Objects for Responses (#460, #857)
+## Result Objects for Responses ([#460](https://github.com/basecamp/fizzy/pull/460), [#857](https://github.com/basecamp/fizzy/pull/857))
 
 Use lightweight result objects instead of coupling to HTTP:
 
@@ -151,7 +151,7 @@ def respond_with_execution_result(result)
 end
 ```
 
-## Tool Pattern for LLM Function Calling (#857)
+## Tool Pattern for LLM Function Calling ([#857](https://github.com/basecamp/fizzy/pull/857))
 
 ```ruby
 class Ai::Tool < RubyLLM::Tool
@@ -208,7 +208,7 @@ end
 
 **Key insight**: User-scoped tools prevent data leakage.
 
-## Confirmation Pattern for Bulk Operations (#464)
+## Confirmation Pattern for Bulk Operations ([#464](https://github.com/basecamp/fizzy/pull/464))
 
 ```ruby
 # Controller
@@ -242,7 +242,7 @@ end
 
 Uses HTTP 409 Conflict for "needs confirmation" state - stateless, no server-side session needed.
 
-## Filter Registry Pattern (#857)
+## Filter Registry Pattern ([#857](https://github.com/basecamp/fizzy/pull/857))
 
 ```ruby
 class Ai::Tool::Filter
@@ -273,7 +273,7 @@ class CardFilter < Ai::Tool::Filter
 end
 ```
 
-## Order Clause Parser (#857)
+## Order Clause Parser ([#857](https://github.com/basecamp/fizzy/pull/857))
 
 Safely parse user-provided sort strings:
 

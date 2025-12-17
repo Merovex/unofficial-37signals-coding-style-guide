@@ -38,19 +38,19 @@ end
 ```
 
 ### Don't HTTP Cache Forms
-CSRF tokens get stale → 422 errors on submit (#1607)
+CSRF tokens get stale → 422 errors on submit ([#1607](https://github.com/basecamp/fizzy/pull/1607))
 
 Remove `fresh_when` from pages with forms.
 
 ### Public Caching
 - Safe for read-only public pages
-- 30 seconds is reasonable (#1377)
+- 30 seconds is reasonable ([#1377](https://github.com/basecamp/fizzy/pull/1377))
 - Use concern to DRY up cache headers
 
 ## Fragment Caching Gotchas
 
 ### Lazy-Loaded Content
-Convert expensive menus to turbo frames that load on demand (#1089)
+Convert expensive menus to turbo frames that load on demand ([#1089](https://github.com/basecamp/fizzy/pull/1089))
 
 ### Context-Dependent Caching
 ```ruby
@@ -63,7 +63,7 @@ Move to client-side JavaScript if it breaks caching:
 - "You commented..." → check via JS
 - Delete buttons → show/hide via JS based on meta tag
 
-## Extract Dynamic Content to Turbo Frames (#317)
+## Extract Dynamic Content to Turbo Frames ([#317](https://github.com/basecamp/fizzy/pull/317))
 
 When part of a cached fragment needs updates:
 ```erb
@@ -74,7 +74,7 @@ When part of a cached fragment needs updates:
 <% end %>
 ```
 
-## Include Rendering Context (#340)
+## Include Rendering Context ([#340](https://github.com/basecamp/fizzy/pull/340))
 
 ```ruby
 # Bad
@@ -84,7 +84,7 @@ cache bubble
 cache [bubble, previewing_card?]
 ```
 
-## Touch Chains for Dependencies (#566)
+## Touch Chains for Dependencies ([#566](https://github.com/basecamp/fizzy/pull/566))
 
 ```ruby
 class Workflow::Stage < ApplicationRecord
@@ -95,7 +95,7 @@ end
 cache [card, card.collection.workflow]
 ```
 
-## Domain Models for Cache Keys (#1132)
+## Domain Models for Cache Keys ([#1132](https://github.com/basecamp/fizzy/pull/1132))
 
 For complex views, create dedicated cache key objects:
 ```ruby

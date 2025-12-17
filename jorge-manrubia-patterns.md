@@ -1,6 +1,6 @@
 # Jorge Manrubia Code Review Patterns
 
-> Extracted from PRs #339, #483, #929, #1052
+> Extracted from PRs [#339](https://github.com/basecamp/fizzy/pull/339), [#483](https://github.com/basecamp/fizzy/pull/483), [#929](https://github.com/basecamp/fizzy/pull/929), #1052
 > Focus: Architecture, Rails patterns, testing, and performance
 
 ---
@@ -19,7 +19,7 @@
 
 **Why it matters**: Creates collaborative atmosphere, teaches decision-making, not just solutions.
 
-**PR #929**: Multiple back-and-forth discussions about quota design, each building on previous feedback.
+**PR [#929](https://github.com/basecamp/fizzy/pull/929)**: Multiple back-and-forth discussions about quota design, each building on previous feedback.
 
 ---
 
@@ -46,7 +46,7 @@ class Quota
 end
 ```
 
-**PR #929 feedback**:
+**PR [#929](https://github.com/basecamp/fizzy/pull/929) feedback**:
 > "I'd use the rule of not adding public methods that are not used anywhere. The narrower the public surface of a class the better, since it's easier to grasp its responsibilities at a glance."
 
 **Why it matters**:
@@ -60,7 +60,7 @@ end
 
 **Pattern**: Choose names that reflect business reality, not implementation.
 
-**PR #929 examples**:
+**PR [#929](https://github.com/basecamp/fizzy/pull/929) examples**:
 
 ```ruby
 # Jorge's suggestion: treat quota as something you "spend"
@@ -81,7 +81,7 @@ quota.depleted?             # not over_limit?
 
 **Pattern**: When parameters get passed through multiple method layers, extract an object.
 
-**PR #929 - Before (code smell)**:
+**PR [#929](https://github.com/basecamp/fizzy/pull/929) - Before (code smell)**:
 ```ruby
 def cost(within:)
   # ...
@@ -113,7 +113,7 @@ end
 - Encapsulates related behavior
 - Creates clear ownership of concepts
 
-**From PR #929**: Quota went from concern with shared params → proper AR model with full lifecycle.
+**From PR [#929](https://github.com/basecamp/fizzy/pull/929)**: Quota went from concern with shared params → proper AR model with full lifecycle.
 
 ---
 
@@ -121,7 +121,7 @@ end
 
 **Pattern**: Consider custom Active Model types, but weigh the cost.
 
-**PR #929 discussion** about `Money` type:
+**PR [#929](https://github.com/basecamp/fizzy/pull/929) discussion** about `Money` type:
 
 Jorge initially suggested custom Active Model type:
 ```ruby
@@ -181,7 +181,7 @@ message.cost.in_dollars
 
 **Pattern**: Don't extract concerns containing only private methods.
 
-**PR #929**:
+**PR [#929](https://github.com/basecamp/fizzy/pull/929)**:
 ```ruby
 # Initial attempt - concern with reset logic
 module Ai::Quota::Resettable
@@ -217,7 +217,7 @@ end
 
 **Pattern**: Consider whether wrapping methods hide useful details or just add noise.
 
-**PR #929 - Jorge changed his mind mid-review**:
+**PR [#929](https://github.com/basecamp/fizzy/pull/929) - Jorge changed his mind mid-review**:
 
 Initial thought:
 ```ruby
@@ -257,7 +257,7 @@ end
 
 **Pattern**: Cache method results that are called repeatedly during rendering.
 
-**PR #1052**:
+**PR [#1052](https://github.com/basecamp/fizzy/pull/1052)**:
 ```ruby
 # Before - called many times during page render
 def as_params
@@ -287,7 +287,7 @@ end
 
 **Pattern**: Layer caching at multiple levels - HTTP, template fragments, queries.
 
-**PR #1052 - Timeline caching**:
+**PR [#1052](https://github.com/basecamp/fizzy/pull/1052) - Timeline caching**:
 
 ```ruby
 # Controller - HTTP caching
@@ -328,7 +328,7 @@ end
 
 **Pattern**: When integrating with LLMs, count tokens before sending.
 
-**PR #483** - Donal's feedback on embeddings:
+**PR [#483](https://github.com/basecamp/fizzy/pull/483)** - Donal's feedback on embeddings:
 ```ruby
 # Need to truncate to token limit
 module Searchable
@@ -363,7 +363,7 @@ end
 
 **Pattern**: Record real API responses, replay in tests.
 
-**PR #483** - AI translation tests:
+**PR [#483](https://github.com/basecamp/fizzy/pull/483)** - AI translation tests:
 
 ```ruby
 # test/test_helper.rb
@@ -398,7 +398,7 @@ end
 
 **Pattern**: It's fine to commit WIP tests, clean up before merge.
 
-**PR #483 - Jorge's comment**:
+**PR [#483](https://github.com/basecamp/fizzy/pull/483) - Jorge's comment**:
 ```ruby
 # test/models/command/chat_query_test.rb
 # > "This is a test I created for development purposes, I'll nix and create a proper suite"
@@ -414,7 +414,7 @@ end
 
 **Pattern**: Use Ruby 3.2's `Data.define` for immutable value objects.
 
-**PR #929**:
+**PR [#929](https://github.com/basecamp/fizzy/pull/929)**:
 ```ruby
 class Ai::Quota::Money < Data.define(:value)
   def self.wrap(value)
@@ -443,7 +443,7 @@ money.in_dollars   # => 100.0
 
 **Pattern**: Store money as integers (microcents) to avoid float errors.
 
-**PR #929 discussion**:
+**PR [#929](https://github.com/basecamp/fizzy/pull/929) discussion**:
 
 ```ruby
 # Why not DECIMAL column?
@@ -473,7 +473,7 @@ end
 
 **Pattern**: Check and reset on use, not scheduled job.
 
-**PR #929**:
+**PR [#929](https://github.com/basecamp/fizzy/pull/929)**:
 ```ruby
 class Ai::Quota
   def spend(cost)
@@ -512,7 +512,7 @@ end
 
 **Pattern**: Define custom errors for business rules.
 
-**PR #929**:
+**PR [#929](https://github.com/basecamp/fizzy/pull/929)**:
 ```ruby
 class Ai::Quota
   class UsageExceedsQuotaError < StandardError; end
@@ -541,7 +541,7 @@ end
 
 **Pattern**: Parse error responses, show descriptive messages.
 
-**PR #929**:
+**PR [#929](https://github.com/basecamp/fizzy/pull/929)**:
 ```javascript
 // conversation/composer_controller.js
 async #failPendingMessage(clientMessageId, response) {
@@ -578,7 +578,7 @@ async #failPendingMessage(clientMessageId, response) {
 
 **Pattern**: Jorge models his thinking process out loud.
 
-**PR #929 progression**:
+**PR [#929](https://github.com/basecamp/fizzy/pull/929) progression**:
 1. "The limit param is a smell that something is missing"
 2. "Thinking about how to clarify this, my mind goes to having a new record"
 3. "This way you remove the responsibility of tracking AI quotas from conversation"
@@ -591,7 +591,7 @@ async #failPendingMessage(clientMessageId, response) {
 
 **Pattern**: Jorge often changes recommendations as discussion evolves.
 
-**PR #929 - Money type decision**:
+**PR [#929](https://github.com/basecamp/fizzy/pull/929) - Money type decision**:
 - First: "Could we clarify this with an object?"
 - Then: "You could use a custom Active Model type"
 - Finally: "I think it's good as it is... the current approach is simple enough"
@@ -607,7 +607,7 @@ async #failPendingMessage(clientMessageId, response) {
 
 **Pattern**: Default to fewer lines unless more are clearly justified.
 
-**PR #929**:
+**PR [#929](https://github.com/basecamp/fizzy/pull/929)**:
 > "My rule of thumb is that the fewer lines of code the better, but of course, it's a fine line without absolute truths (sometimes the extra lines are justified). You have a much better sense of the problems with amounts here so follow your instinct 👍"
 
 ---
@@ -629,7 +629,7 @@ async #failPendingMessage(clientMessageId, response) {
 
 ## References
 
-- **PR #929**: Conversation cost limits (quota system design)
-- **PR #1052**: Add more caching (performance optimization)
-- **PR #483**: Fizz Do with AI (LLM integration, VCR testing)
-- **PR #339**: Enable page refreshes with morphing
+- **PR [#929](https://github.com/basecamp/fizzy/pull/929)**: Conversation cost limits (quota system design)
+- **PR [#1052](https://github.com/basecamp/fizzy/pull/1052)**: Add more caching (performance optimization)
+- **PR [#483](https://github.com/basecamp/fizzy/pull/483)**: Fizz Do with AI (LLM integration, VCR testing)
+- **PR [#339](https://github.com/basecamp/fizzy/pull/339)**: Enable page refreshes with morphing

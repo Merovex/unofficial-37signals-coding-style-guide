@@ -1,6 +1,6 @@
 # Transferable Patterns from Fizzy Watching/Subscription System
 
-This guide extracts reusable patterns from Fizzy's evolution of watching/subscription features (#310, #1088, #1099, #1228, #1231, #1239, #1519), focusing on lessons applicable to any Rails app.
+This guide extracts reusable patterns from Fizzy's evolution of watching/subscription features ([#310](https://github.com/basecamp/fizzy/pull/310), [#1088](https://github.com/basecamp/fizzy/pull/1088), [#1099](https://github.com/basecamp/fizzy/pull/1099), [#1228](https://github.com/basecamp/fizzy/pull/1228), [#1231](https://github.com/basecamp/fizzy/pull/1231), [#1239](https://github.com/basecamp/fizzy/pull/1239), [#1519](https://github.com/basecamp/fizzy/pull/1519)), focusing on lessons applicable to any Rails app.
 
 ## Table of Contents
 
@@ -20,7 +20,7 @@ This guide extracts reusable patterns from Fizzy's evolution of watching/subscri
 
 **Why it matters**: Reduces complexity, eliminates joins, and makes the mental model simpler. Every access record already represents a relationship between a user and a resource—adding notification preferences to that same record is more natural.
 
-**From PR #310**:
+**From PR [#310](https://github.com/basecamp/fizzy/pull/310)**:
 
 ### Before: Separate Subscription Model
 
@@ -121,7 +121,7 @@ end
 
 **Why it matters**: Users rarely understand complex notification settings. Simpler options lead to better UX and easier testing.
 
-**From PR #1088**:
+**From PR [#1088](https://github.com/basecamp/fizzy/pull/1088)**:
 
 ### Before: Three Levels (Confusing)
 
@@ -206,7 +206,7 @@ end
 
 **Why it matters**: These are different mental models. Users want to watch specific discussions (resource-level) separately from being notified about all new items (collection-level).
 
-**From PR #1228 & #1231**:
+**From PR [#1228](https://github.com/basecamp/fizzy/pull/1228) & [#1231](https://github.com/basecamp/fizzy/pull/1231)**:
 
 ### Collection-Level Watching (Boards/Collections)
 
@@ -280,7 +280,7 @@ end
 
 **Why it matters**: Provides instant feedback and keeps the UI in sync across multiple representations of the same state.
 
-**From PR #1239**:
+**From PR [#1239](https://github.com/basecamp/fizzy/pull/1239)**:
 
 ### Controller Pattern
 
@@ -386,7 +386,7 @@ end
 
 **Why it matters**: Prevents data leaks where users retain watch subscriptions to resources they can no longer access.
 
-**From PR #1519**:
+**From PR [#1519](https://github.com/basecamp/fizzy/pull/1519)**:
 
 ### Model Pattern
 
@@ -451,7 +451,7 @@ end
 
 **Why it matters**: Keeps cached views up-to-date without manual cache busting logic.
 
-**From PR #1088 & #1228**:
+**From PR [#1088](https://github.com/basecamp/fizzy/pull/1088) & [#1228](https://github.com/basecamp/fizzy/pull/1228)**:
 
 ### Touch on Association Changes
 
@@ -507,7 +507,7 @@ end
 
 **Why it matters**: Notification logic is business-critical and easy to break. Comprehensive tests prevent regressions.
 
-**From PRs #310, #1088, #1231**:
+**From PRs [#310](https://github.com/basecamp/fizzy/pull/310), [#1088](https://github.com/basecamp/fizzy/pull/1088), [#1231](https://github.com/basecamp/fizzy/pull/1231)**:
 
 ### Model-Level Tests
 

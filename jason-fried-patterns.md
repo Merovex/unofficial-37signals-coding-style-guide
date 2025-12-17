@@ -1,13 +1,13 @@
 # Jason Fried's Product-Oriented Development Patterns
 
-> Transferable insights from PRs #305, #131, #335, #265, #608
+> Transferable insights from PRs [#305](https://github.com/basecamp/fizzy/pull/305), [#131](https://github.com/basecamp/fizzy/pull/131), [#335](https://github.com/basecamp/fizzy/pull/335), [#265](https://github.com/basecamp/fizzy/pull/265), #608
 
 ---
 
 ## UX-First Decision Making
 
 ### Perceived Performance > Technical Performance
-**From PR #131 - New filtering UI**
+**From PR [#131](https://github.com/basecamp/fizzy/pull/131) - New filtering UI**
 
 Jason challenged the Turbo Streams approach not because it was technically wrong, but because of how it *felt*:
 
@@ -22,7 +22,7 @@ Jason challenged the Turbo Streams approach not because it was technically wrong
 When reviewing implementations, ask: "Does this feel instant to the user?" Not just "Is the server response under 200ms?"
 
 ### Simplify by Removing, Not Just Hiding
-**From PR #131**
+**From PR [#131](https://github.com/basecamp/fizzy/pull/131)**
 
 When the filter UI became complex with live-updating chips, Jason proposed:
 
@@ -45,7 +45,7 @@ When the filter UI became complex with live-updating chips, Jason proposed:
 ## Prototype Quality Shipping
 
 ### Explicitly Label Implementation Quality
-**From PR #335 - Two column Collection design**
+**From PR [#335](https://github.com/basecamp/fizzy/pull/335) - Two column Collection design**
 
 Jason's guidance to the reviewer:
 
@@ -60,7 +60,7 @@ Jason's guidance to the reviewer:
 > "The goal is to get this onto our production instance as soon as possible so we can vet the design with real work."
 
 ### Ship to Validate, But Document Known Issues
-**From PR #335**
+**From PR [#335](https://github.com/basecamp/fizzy/pull/335)**
 
 Jason merged with explicit areas for improvement:
 
@@ -91,7 +91,7 @@ Jason merged with explicit areas for improvement:
 ## Real Usage Trumps Speculation
 
 ### Prefer Production Validation Over Local Perfection
-**From PR #335**
+**From PR [#335](https://github.com/basecamp/fizzy/pull/335)**
 
 > "A concern is that it currently runs slowly on our beta instance which may be simply because the Digital Ocean droplet doesn't have sufficient specs. It's quite fast on local dev so this might not be an issue at all on our production instance."
 
@@ -106,7 +106,7 @@ Jason merged with explicit areas for improvement:
 3. Ship to prod to know for sure (with monitoring ready)
 
 ### Name Technical Debt, Don't Block on It
-**From PR #335**
+**From PR [#335](https://github.com/basecamp/fizzy/pull/335)**
 
 > "There is also some mess here that we haven't cleaned up since we moved to the cards design... the whole `Bubble` namespace doesn't really make sense anymore but we haven't done anything about it. I'm only pointing that out because it's probably confusing!"
 
@@ -120,7 +120,7 @@ Jason merged with explicit areas for improvement:
 ## Incremental Feature Addition
 
 ### Add Escape Hatches Without Removing Primary Path
-**From PR #608 - Create and add another**
+**From PR [#608](https://github.com/basecamp/fizzy/pull/608) - Create and add another**
 
 The PR added a "Create and add another" button without changing the primary "Create card" flow.
 
@@ -162,7 +162,7 @@ When adding workflows, branch with parameters rather than replacing routes or cr
 ## Visual Polish Through Iteration
 
 ### Ship Visual Redesigns Big
-**From PR #305 - New visual design**
+**From PR [#305](https://github.com/basecamp/fizzy/pull/305) - New visual design**
 
 This was a massive visual overhaul (95 files changed):
 - Complete CSS restructuring
@@ -187,7 +187,7 @@ Incremental visual changes create inconsistent UX. Better to:
 ## Feature Design Principles
 
 ### Reuse Robust Systems for New Features
-**From PR #335**
+**From PR [#335](https://github.com/basecamp/fizzy/pull/335)**
 
 > "The whole thing runs through the `Filter` system. It's quite robust and resilient so I got a lot of mileage out of breaking it out into individual forms to get the various sorting and filtering in place."
 
@@ -214,7 +214,7 @@ Incremental visual changes create inconsistent UX. Better to:
 ## Feedback Style
 
 ### Give Product Context, Not Implementation Mandates
-**From PR #131**
+**From PR [#131](https://github.com/basecamp/fizzy/pull/131)**
 
 Jason didn't say "use a single form" or "remove the Turbo Streams". He said:
 
@@ -232,7 +232,7 @@ Jason didn't say "use a single form" or "remove the Turbo Streams". He said:
 - "You must do Y"
 
 ### Trust, Then Verify in Production
-**From PR #335**
+**From PR [#335](https://github.com/basecamp/fizzy/pull/335)**
 
 > "It could be that you just merge it as is and there's no problem. If you do choose to dig more deeply, here are a few areas to look into..."
 
@@ -246,7 +246,7 @@ Jason didn't say "use a single form" or "remove the Turbo Streams". He said:
 ## CSS Container Query Patterns
 
 ### Use Container Queries for Responsive Cards
-**From PR #305, #335**
+**From PR [#305](https://github.com/basecamp/fizzy/pull/305), [#335](https://github.com/basecamp/fizzy/pull/335)**
 
 ```css
 .card {
@@ -278,7 +278,7 @@ All without media queries.
 ## Data-Driven Development
 
 ### List Specific Investigation Areas
-**From PR #335**
+**From PR [#335](https://github.com/basecamp/fizzy/pull/335)**
 
 When shipping for validation, enumerate what to watch:
 

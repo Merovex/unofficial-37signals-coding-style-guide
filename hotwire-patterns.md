@@ -9,31 +9,31 @@
 - Enable globally: `turbo_refreshes_with method: :morph, scroll: :preserve`
 - Listen for `turbo:morph-element` to restore client-side state
 - Use `data-turbo-permanent` for elements that shouldn't refresh
-- Ensure unique IDs - duplicates break morphing (#1327)
+- Ensure unique IDs - duplicates break morphing ([#1327](https://github.com/basecamp/fizzy/pull/1327))
 
 ## Turbo Frames
 
-- Wrap form sections in frames to prevent reset on partial updates (#696)
-- Lazy-load expensive menus via frames (#1089)
+- Wrap form sections in frames to prevent reset on partial updates ([#696](https://github.com/basecamp/fizzy/pull/696))
+- Lazy-load expensive menus via frames ([#1089](https://github.com/basecamp/fizzy/pull/1089))
 - Use `turbo_stream.replace` instead of redirects for in-place updates
-- Use `refresh: :morph` on lazy-loaded frames to prevent flicker (#339)
+- Use `refresh: :morph` on lazy-loaded frames to prevent flicker ([#339](https://github.com/basecamp/fizzy/pull/339))
 
 ## Common Turbo Issues
 
 | Problem | Solution |
 |---------|----------|
-| Timers not updating after morph | Bind to `turbo:morph` event (#396) |
-| Forms resetting | Wrap in turbo frames (#696) |
-| Pagination breaking | Ensure unique IDs (#1327) |
-| Flickering on replace | Use `method: :morph` (#416) |
-| localStorage lost | Restore on `turbo:morph-element` (#339) |
+| Timers not updating after morph | Bind to `turbo:morph` event ([#396](https://github.com/basecamp/fizzy/pull/396)) |
+| Forms resetting | Wrap in turbo frames ([#696](https://github.com/basecamp/fizzy/pull/696)) |
+| Pagination breaking | Ensure unique IDs ([#1327](https://github.com/basecamp/fizzy/pull/1327)) |
+| Flickering on replace | Use `method: :morph` ([#416](https://github.com/basecamp/fizzy/pull/416)) |
+| localStorage lost | Restore on `turbo:morph-element` ([#339](https://github.com/basecamp/fizzy/pull/339)) |
 
 ## Stimulus Best Practices
 
 - Use **Values API** over `getAttribute()` - cleaner, type-coerced
 - Use **camelCase** in JavaScript (even for data attributes)
 - Always clean up in `disconnect()` - timers, listeners
-- Use `:self` action filter to scope events (#1936)
+- Use `:self` action filter to scope events ([#1936](https://github.com/basecamp/fizzy/pull/1936))
 - Extract shared helpers to modules (`date_helpers.js`)
 
 ## State Persistence
@@ -41,16 +41,16 @@
 - localStorage for UI preferences (expanded panels, etc.)
 - Accept flash-of-collapsed-content as acceptable tradeoff
 - Restore state on `turbo:morph-element` events
-- Use `nextFrame()` helper to wait for morph completion (#339)
+- Use `nextFrame()` helper to wait for morph completion ([#339](https://github.com/basecamp/fizzy/pull/339))
 
 ## Links Over JavaScript
 
-- Filter chips as plain `<a>` tags, not JS-powered buttons (#138)
+- Filter chips as plain `<a>` tags, not JS-powered buttons ([#138](https://github.com/basecamp/fizzy/pull/138))
 - Better browser affordances (right-click, cmd+click)
 - Simpler, more declarative code
 - Let the browser do what browsers do
 
-## Morphing + Turbo Streams (#416)
+## Morphing + Turbo Streams ([#416](https://github.com/basecamp/fizzy/pull/416))
 
 When replacing content containing Turbo Frames:
 ```ruby
@@ -67,7 +67,7 @@ Mark nested frames as permanent:
     data: { turbo_permanent: true } %>
 ```
 
-## Element-Level Morph Events (#490)
+## Element-Level Morph Events ([#490](https://github.com/basecamp/fizzy/pull/490))
 
 Prefer element-specific events over global:
 ```ruby
@@ -79,7 +79,7 @@ tag.time data: {
 
 More efficient than `turbo:morph@window`.
 
-## Turbo Frames Preserve Form State (#696)
+## Turbo Frames Preserve Form State ([#696](https://github.com/basecamp/fizzy/pull/696))
 
 Wrap independent sections in frames:
 ```erb
@@ -96,7 +96,7 @@ render turbo_stream: turbo_stream.replace(
 )
 ```
 
-## POST + Turbo Streams for UI State (#1091)
+## POST + Turbo Streams for UI State ([#1091](https://github.com/basecamp/fizzy/pull/1091))
 
 For state toggles (expand/collapse), use POST not GET:
 ```erb
@@ -105,7 +105,7 @@ For state toggles (expand/collapse), use POST not GET:
 
 Controller returns stream update instead of redirect.
 
-## Frame Morphing Configuration (#1327)
+## Frame Morphing Configuration ([#1327](https://github.com/basecamp/fizzy/pull/1327))
 
 Set `refresh: :morph` on frames with `src`:
 ```ruby
@@ -116,7 +116,7 @@ Prevents frame removal during page morphs.
 
 ## Drag and Drop Patterns
 
-### Architecture: Simple Drag Controller Over Complex Sortable (#607)
+### Architecture: Simple Drag Controller Over Complex Sortable ([#607](https://github.com/basecamp/fizzy/pull/607))
 
 For basic D&D between containers, use a focused drag-and-drop controller instead of heavyweight sortable libraries:
 
@@ -179,7 +179,7 @@ export default class extends Controller {
 - Track source container to prevent dropping on self
 - Optimistically remove on successful drop
 
-### Server-Side Re-render Strategy (#607)
+### Server-Side Re-render Strategy ([#607](https://github.com/basecamp/fizzy/pull/607))
 
 Let the server handle complex ordering/filtering instead of client-side manipulation:
 
@@ -206,7 +206,7 @@ end
 
 **Trade-off:** Slightly less smooth than pure client-side positioning, but much simpler.
 
-### Conditional Draggable Items (#607)
+### Conditional Draggable Items ([#607](https://github.com/basecamp/fizzy/pull/607))
 
 Make draggability a render-time decision, not global:
 
@@ -233,7 +233,7 @@ Make draggability a render-time decision, not global:
 cache cacheable_preview_parts_for(card, draggable)
 ```
 
-### Drag Visual Feedback (#607, #209)
+### Drag Visual Feedback ([#607](https://github.com/basecamp/fizzy/pull/607), [#209](https://github.com/basecamp/fizzy/pull/209))
 
 Provide clear visual states for drag interactions:
 
@@ -253,7 +253,7 @@ Provide clear visual states for drag interactions:
 }
 ```
 
-**Disable hover states during drag (#209):**
+**Disable hover states during drag ([#209](https://github.com/basecamp/fizzy/pull/209)):**
 ```css
 ul:not(.dragging) {
   li {
@@ -268,7 +268,7 @@ ul:not(.dragging) {
 
 **Why:** Prevents janky hover flickering while dragging.
 
-### Custom Drag Image (#207)
+### Custom Drag Image ([#207](https://github.com/basecamp/fizzy/pull/207))
 
 Provide helpful drag feedback instead of browser default:
 
@@ -299,7 +299,7 @@ configureDrag(event) {
 
 **Why:** Browser default is often ugly/confusing. Custom image provides context.
 
-### Prevent Drag Jank with Overlap Threshold (#209)
+### Prevent Drag Jank with Overlap Threshold ([#209](https://github.com/basecamp/fizzy/pull/209))
 
 When dragging near boundaries, prevent jittery movement:
 
@@ -325,7 +325,7 @@ moveDivider(event) {
 
 **When to use:** Dragging between tightly-packed items with varying heights.
 
-### Accessibility for Drag Handles (#207)
+### Accessibility for Drag Handles ([#207](https://github.com/basecamp/fizzy/pull/207))
 
 Always provide screen reader context:
 
@@ -341,7 +341,7 @@ Always provide screen reader context:
 - Mark decorative icon as `aria-hidden`
 - Describe the action outcome, not just "drag handle"
 
-### Progressive Installation (#207)
+### Progressive Installation ([#207](https://github.com/basecamp/fizzy/pull/207))
 
 Show drag UI only after JavaScript loads:
 
@@ -375,7 +375,7 @@ data: {
 
 **Why:** Prevents flash of non-functional UI. Only show when interaction is ready.
 
-### Using @rails/request.js with Turbo (#607)
+### Using @rails/request.js with Turbo ([#607](https://github.com/basecamp/fizzy/pull/607))
 
 Make `@rails/request.js` use Turbo's fetch for proper integration:
 
@@ -388,7 +388,7 @@ window.fetch = Turbo.fetch
 
 **When to use:** When using `post()` from `@rails/request.js` in Stimulus controllers.
 
-### Single-Purpose Drop Controllers (#607)
+### Single-Purpose Drop Controllers ([#607](https://github.com/basecamp/fizzy/pull/607))
 
 Create focused controllers for specific drop behaviors:
 
@@ -422,7 +422,7 @@ namespace :cards do
 end
 ```
 
-### Prevent Nested Drag Conflicts (#607)
+### Prevent Nested Drag Conflicts ([#607](https://github.com/basecamp/fizzy/pull/607))
 
 Disable dragging on nested interactive elements:
 
@@ -434,7 +434,7 @@ Disable dragging on nested interactive elements:
 
 **Apply to:** Links, nested drag handles, buttons within draggable containers.
 
-## Stimulus for Cached Fragment Personalization (#124)
+## Stimulus for Cached Fragment Personalization ([#124](https://github.com/basecamp/fizzy/pull/124))
 
 Cached partials can't access `Current.user`. Move user-specific styling to client-side:
 

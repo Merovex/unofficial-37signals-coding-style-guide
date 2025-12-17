@@ -6,7 +6,7 @@ This document extracts general-purpose workflow patterns from Fizzy's implementa
 
 **Pattern**: Store state transitions as events with structured metadata instead of just updating state fields.
 
-**Implementation** (from PR #121):
+**Implementation** (from PR [#121](https://github.com/basecamp/fizzy/pull/121)):
 
 ```ruby
 module Event::Stages
@@ -37,7 +37,7 @@ end
 
 **Pattern**: Use `after_create_commit` to create default associated records, ensuring they're only created after the transaction succeeds.
 
-**Implementation** (from PR #413):
+**Implementation** (from PR [#413](https://github.com/basecamp/fizzy/pull/413)):
 
 ```ruby
 class Workflow < ApplicationRecord
@@ -69,7 +69,7 @@ end
 
 **Pattern**: When a parent's workflow changes, update all children in a single operation.
 
-**Implementation** (from PR #329):
+**Implementation** (from PR [#329](https://github.com/basecamp/fizzy/pull/329)):
 
 ```ruby
 class Bucket < ApplicationRecord
@@ -99,7 +99,7 @@ end
 
 **Pattern**: Derive state from associations rather than storing redundant data.
 
-**Implementation** (from PR #389):
+**Implementation** (from PR [#389](https://github.com/basecamp/fizzy/pull/389)):
 
 ```ruby
 module Card::Colored
@@ -130,7 +130,7 @@ end
 
 **Pattern**: Extend Turbo Streams with custom actions for complex UI state changes.
 
-**Implementation** (from PR #389):
+**Implementation** (from PR [#389](https://github.com/basecamp/fizzy/pull/389)):
 
 ```ruby
 # JavaScript
@@ -172,7 +172,7 @@ Turbo::Streams::TagBuilder.prepend(TurboStreamsActionsHelper)
 
 **Pattern**: Structure operations as command objects with built-in undo support.
 
-**Implementation** (from PR #662):
+**Implementation** (from PR [#662](https://github.com/basecamp/fizzy/pull/662)):
 
 ```ruby
 class Command::Stage < Command
@@ -233,7 +233,7 @@ end
 
 **Pattern**: Build flexible filters by chaining scopes with polymorphic relationships.
 
-**Implementation** (from PR #218):
+**Implementation** (from PR [#218](https://github.com/basecamp/fizzy/pull/218)):
 
 ```ruby
 class Filter < ApplicationRecord
@@ -275,7 +275,7 @@ end
 
 **Pattern**: Delegate workflow state to parent but allow local overrides.
 
-**Implementation** (from PR #121):
+**Implementation** (from PR [#121](https://github.com/basecamp/fizzy/pull/121)):
 
 ```ruby
 module Bubble::Staged
@@ -315,7 +315,7 @@ end
 
 **Pattern**: Generate human-readable summaries of complex filter/workflow state.
 
-**Implementation** (from PR #218):
+**Implementation** (from PR [#218](https://github.com/basecamp/fizzy/pull/218)):
 
 ```ruby
 module Filter::Summarized
@@ -352,7 +352,7 @@ end
 
 **Pattern**: Test both the state change AND the event creation.
 
-**Implementation** (from PR #413):
+**Implementation** (from PR [#413](https://github.com/basecamp/fizzy/pull/413)):
 
 ```ruby
 test "create with default stages" do
@@ -376,7 +376,7 @@ end
 
 **Pattern**: Set initial workflow state before record creation to ensure consistency.
 
-**Implementation** (from PR #121, later refactored in #1258):
+**Implementation** (from PR [#121](https://github.com/basecamp/fizzy/pull/121), later refactored in [#1258](https://github.com/basecamp/fizzy/pull/1258)):
 
 ```ruby
 included do
@@ -403,7 +403,7 @@ private
 
 **Pattern**: Validate workflow transitions based on business context.
 
-**Implementation** (from PR #662):
+**Implementation** (from PR [#662](https://github.com/basecamp/fizzy/pull/662)):
 
 ```ruby
 class Command::Stage < Command
@@ -443,13 +443,13 @@ end
 
 ## PR References
 
-- **#121**: Initial workflow spike - basic stage tracking, event model
-- **#218**: Stage filtering - scope-based filtering, join tables, summaries
-- **#329**: Bucket-level workflows - cascading changes, parent-child relationships
-- **#389**: Stage colors - computed properties, custom Turbo actions, real-time updates
-- **#413**: Default stages - after_commit callbacks, insert_all performance
-- **#662**: Stage command - undoable commands, contextual validation
-- **#763**: Stage resolution - command context awareness
-- **#1258**: Workflow cleanup - migration from stages to columns (demonstrates refactoring patterns)
+- **[#121](https://github.com/basecamp/fizzy/pull/121)**: Initial workflow spike - basic stage tracking, event model
+- **[#218](https://github.com/basecamp/fizzy/pull/218)**: Stage filtering - scope-based filtering, join tables, summaries
+- **[#329](https://github.com/basecamp/fizzy/pull/329)**: Bucket-level workflows - cascading changes, parent-child relationships
+- **[#389](https://github.com/basecamp/fizzy/pull/389)**: Stage colors - computed properties, custom Turbo actions, real-time updates
+- **[#413](https://github.com/basecamp/fizzy/pull/413)**: Default stages - after_commit callbacks, insert_all performance
+- **[#662](https://github.com/basecamp/fizzy/pull/662)**: Stage command - undoable commands, contextual validation
+- **[#763](https://github.com/basecamp/fizzy/pull/763)**: Stage resolution - command context awareness
+- **[#1258](https://github.com/basecamp/fizzy/pull/1258)**: Workflow cleanup - migration from stages to columns (demonstrates refactoring patterns)
 
 Each pattern is production-tested and battle-hardened from a real-world project management application.

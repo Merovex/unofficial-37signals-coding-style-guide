@@ -11,15 +11,15 @@
 # Run jobs in Puma process
 export SOLID_QUEUE_IN_PUMA=1
 ```
-Simplifies dev - no separate worker process (#469).
+Simplifies dev - no separate worker process ([#469](https://github.com/basecamp/fizzy/pull/469)).
 
 ### Production
-- Match workers to CPU cores (#1290)
-- 3 threads for I/O-bound jobs (#1329)
+- Match workers to CPU cores ([#1290](https://github.com/basecamp/fizzy/pull/1290))
+- 3 threads for I/O-bound jobs ([#1329](https://github.com/basecamp/fizzy/pull/1329))
 
 ## Stagger Recurring Jobs
 
-Prevent resource spikes by offsetting schedules (#1329):
+Prevent resource spikes by offsetting schedules ([#1329](https://github.com/basecamp/fizzy/pull/1329)):
 
 ```yaml
 # Bad - all at :00
@@ -33,7 +33,7 @@ job_b: every hour at minute 50
 
 ## Transaction Safety
 
-### Enqueue After Commit (#1664)
+### Enqueue After Commit ([#1664](https://github.com/basecamp/fizzy/pull/1664))
 ```ruby
 # In initializer
 ActiveJob::Base.enqueue_after_transaction_commit = true
@@ -44,7 +44,7 @@ Fixes `ActiveStorage::FileNotFoundError` on uploads.
 
 ## Error Handling
 
-### Transient Errors (#1924)
+### Transient Errors ([#1924](https://github.com/basecamp/fizzy/pull/1924))
 Retry network errors with polynomial backoff:
 - `Net::OpenTimeout`
 - `Net::ReadTimeout`
@@ -59,14 +59,14 @@ Log to Sentry at info level, not error.
 
 ## Maintenance Jobs
 
-### Clean Finished Jobs (#943)
+### Clean Finished Jobs ([#943](https://github.com/basecamp/fizzy/pull/943))
 ```yaml
 clear_finished_jobs:
   command: "SolidQueue::Job.clear_finished_in_batches"
   schedule: every hour at minute 12
 ```
 
-### Clean Orphaned Data (#494)
+### Clean Orphaned Data ([#494](https://github.com/basecamp/fizzy/pull/494))
 - Unused tags (daily)
 - Old webhook deliveries (every 4 hours)
 - Expired magic links
@@ -94,7 +94,7 @@ def mark_as_read_now(user:)
 end
 ```
 
-## SMTP Error Handling (#1924)
+## SMTP Error Handling ([#1924](https://github.com/basecamp/fizzy/pull/1924))
 
 Create reusable concern:
 ```ruby
@@ -119,7 +119,7 @@ end
 
 Apply to ActionMailer::MailDeliveryJob.
 
-## Continuable Jobs for Resilient Iteration (#1083)
+## Continuable Jobs for Resilient Iteration ([#1083](https://github.com/basecamp/fizzy/pull/1083))
 
 Use `ActiveJob::Continuable` to resume from where you left off after crashes:
 

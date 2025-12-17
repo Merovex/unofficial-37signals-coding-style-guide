@@ -1,6 +1,6 @@
 # Rails Accessibility Guide
 
-Lessons extracted from Fizzy accessibility improvements (PRs #302, #537, #581, #695, #834, #994).
+Lessons extracted from Fizzy accessibility improvements (PRs [#302](https://github.com/basecamp/fizzy/pull/302), [#537](https://github.com/basecamp/fizzy/pull/537), [#581](https://github.com/basecamp/fizzy/pull/581), [#695](https://github.com/basecamp/fizzy/pull/695), [#834](https://github.com/basecamp/fizzy/pull/834), [#994](https://github.com/basecamp/fizzy/pull/994)).
 
 ## ARIA Patterns
 
@@ -10,7 +10,7 @@ Lessons extracted from Fizzy accessibility improvements (PRs #302, #537, #581, #
 
 **Why:** Screen readers should announce content once, not multiple times. Visual decorations don't add meaning.
 
-**Example from PR #302:**
+**Example from PR [#302](https://github.com/basecamp/fizzy/pull/302):**
 ```erb
 <!-- Before: Screen reader announces image AND text -->
 <div class="bubble__image">
@@ -42,7 +42,7 @@ Lessons extracted from Fizzy accessibility improvements (PRs #302, #537, #581, #
 
 **Why:** Screen readers can't interpret icon graphics; users need to know what the button does.
 
-**Example from PR #302:**
+**Example from PR [#302](https://github.com/basecamp/fizzy/pull/302):**
 ```erb
 <!-- Before: Screen reader says "button" with no context -->
 <button class="btn">
@@ -69,7 +69,7 @@ Lessons extracted from Fizzy accessibility improvements (PRs #302, #537, #581, #
 
 **Why:** Helps screen reader users understand the relationship between items.
 
-**Example from PR #302:**
+**Example from PR [#302](https://github.com/basecamp/fizzy/pull/302):**
 ```erb
 <!-- Messages section -->
 <div class="comments" role="group" aria-label="Messages">
@@ -90,7 +90,7 @@ Lessons extracted from Fizzy accessibility improvements (PRs #302, #537, #581, #
 
 **Why:** "5" is less meaningful than "5 comments".
 
-**Example from PR #302:**
+**Example from PR [#302](https://github.com/basecamp/fizzy/pull/302):**
 ```erb
 <!-- Before: "5" -->
 <span><%= comments.count %></span>
@@ -106,7 +106,7 @@ Lessons extracted from Fizzy accessibility improvements (PRs #302, #537, #581, #
 
 **Why:** Screen readers announce these when the dialog opens, helping users understand the context.
 
-**Example from PR #302:**
+**Example from PR [#302](https://github.com/basecamp/fizzy/pull/302):**
 ```erb
 <dialog aria-label="Assigned to…" aria-description="Filter cards by assignee"
         data-dialog-target="dialog">
@@ -121,7 +121,7 @@ Lessons extracted from Fizzy accessibility improvements (PRs #302, #537, #581, #
 
 **Why:** Screen readers need to know an element is interactive.
 
-**Example from PR #302:**
+**Example from PR [#302](https://github.com/basecamp/fizzy/pull/302):**
 ```erb
 <!-- Interactive span acting as a button -->
 <%= tag.span reaction.content,
@@ -138,7 +138,7 @@ Lessons extracted from Fizzy accessibility improvements (PRs #302, #537, #581, #
 
 **Why:** Tells screen readers whether expandable content is currently visible.
 
-**Example from PR #302:**
+**Example from PR [#302](https://github.com/basecamp/fizzy/pull/302):**
 ```javascript
 // In Stimulus controller
 reveal() {
@@ -153,7 +153,7 @@ reveal() {
 
 **Why:** `<menu>` is deprecated; use `<div role="group">` for grouping.
 
-**Example from PR #302:**
+**Example from PR [#302](https://github.com/basecamp/fizzy/pull/302):**
 ```erb
 <!-- Before -->
 <menu class="filter__menu">
@@ -176,7 +176,7 @@ reveal() {
 
 **Why:** Prevents browser default actions from interfering (e.g., Ctrl+K opening browser search on Linux).
 
-**Example from PR #537:**
+**Example from PR [#537](https://github.com/basecamp/fizzy/pull/537):**
 ```javascript
 // In Stimulus controller
 click(event) {
@@ -198,7 +198,7 @@ data-action="keydown.ctrl+k@document->terminal#focus:prevent"
 
 **Why:** Common pattern for dropdowns, menus, trays - centralize the logic.
 
-**Example from PR #581:**
+**Example from PR [#581](https://github.com/basecamp/fizzy/pull/581):**
 ```javascript
 // navigable_list_controller.js
 export default class extends Controller {
@@ -249,7 +249,7 @@ Usage:
 
 **Why:** Elements can be hidden via CSS (`display: none`, `visibility: hidden`) without the `hidden` attribute.
 
-**Example from PR #834:**
+**Example from PR [#834](https://github.com/basecamp/fizzy/pull/834):**
 ```javascript
 get #visibleItems() {
   return this.itemTargets.filter(item => {
@@ -264,7 +264,7 @@ get #visibleItems() {
 
 **Why:** Visual order should match keyboard navigation order.
 
-**Example from PR #834:**
+**Example from PR [#834](https://github.com/basecamp/fizzy/pull/834):**
 ```erb
 <!-- Notifications tray stacks from bottom up -->
 <dialog data-controller="navigable-list"
@@ -279,7 +279,7 @@ get #visibleItems() {
 
 **Why:** Prevents stale selection states from previous interactions.
 
-**Example from PR #834:**
+**Example from PR [#834](https://github.com/basecamp/fizzy/pull/834):**
 ```erb
 <dialog data-action="dialog:show@document->navigable-list#reset">
   <!-- List items reset when dialog opens -->
@@ -294,7 +294,7 @@ get #visibleItems() {
 
 **Why:** Provide context to screen reader users without cluttering the UI.
 
-**Example from PR #302:**
+**Example from PR [#302](https://github.com/basecamp/fizzy/pull/302):**
 ```css
 .visually-hidden,
 .for-screen-reader {
@@ -320,7 +320,7 @@ get #visibleItems() {
 
 **Why:** `aria-label` overrides element content; visually-hidden preserves structure.
 
-**Example from PR #302:**
+**Example from PR [#302](https://github.com/basecamp/fizzy/pull/302):**
 ```erb
 <!-- Bad: aria-label doesn't support HTML -->
 <div aria-label="Due on January 5, 2024">
@@ -344,7 +344,7 @@ get #visibleItems() {
 
 **Why:** Screen readers need explicit label-input relationships.
 
-**Example from PR #302:**
+**Example from PR [#302](https://github.com/basecamp/fizzy/pull/302):**
 ```erb
 <!-- Before: Broken association with array names -->
 <%= form.check_box "assignee_ids[]", {}, user.id %>
@@ -363,7 +363,7 @@ get #visibleItems() {
 
 **Why:** Screen readers can't determine purpose without labels.
 
-**Example from PR #302:**
+**Example from PR [#302](https://github.com/basecamp/fizzy/pull/302):**
 ```erb
 <!-- Before: No label -->
 <%= text_field_tag :boost_count, value %>
@@ -379,7 +379,7 @@ get #visibleItems() {
 
 **Why:** Screen readers use semantic structure for navigation.
 
-**Example from PR #302:**
+**Example from PR [#302](https://github.com/basecamp/fizzy/pull/302):**
 ```erb
 <!-- Before: Missing semantic structure -->
 <div class="comment__author">
@@ -402,7 +402,7 @@ Note: `contents` attribute makes the `<h3>` act as a container without introduci
 
 **Why:** Users need to know what the date field controls.
 
-**Example from PR #302:**
+**Example from PR [#302](https://github.com/basecamp/fizzy/pull/302):**
 ```erb
 <label class="bubble__date">
   <span class="for-screen-reader">Change the due date</span>
@@ -421,7 +421,7 @@ Note: `contents` attribute makes the `<h3>` act as a container without introduci
 
 **Why:** Consistent, visible focus indicators are crucial for keyboard users.
 
-**Example from PR #695:**
+**Example from PR [#695](https://github.com/basecamp/fizzy/pull/695):**
 ```css
 :root {
   --focus-ring-color: var(--color-link);
@@ -442,7 +442,7 @@ Note: `contents` attribute makes the `<h3>` act as a container without introduci
 
 **Why:** Prevents focus rings appearing during mouse clicks while preserving them for keyboard users.
 
-**Example from PR #695:**
+**Example from PR [#695](https://github.com/basecamp/fizzy/pull/695):**
 ```css
 /* Bad: Shows ring on mouse click */
 button:focus {
@@ -461,7 +461,7 @@ button:focus-visible {
 
 **Why:** Users need to see focus, even when the actual input is hidden.
 
-**Example from PR #695:**
+**Example from PR [#695](https://github.com/basecamp/fizzy/pull/695):**
 ```css
 .btn {
   :is(input[type=radio], input[type=checkbox]) {
@@ -487,7 +487,7 @@ button:focus-visible {
 
 **Why:** Some contexts (like rich text editors) handle focus differently.
 
-**Example from PR #695:**
+**Example from PR [#695](https://github.com/basecamp/fizzy/pull/695):**
 ```css
 .hide-focus-ring {
   --focus-ring-size: 0;
@@ -505,7 +505,7 @@ button:focus-visible {
 
 **Why:** Keyboard users need to know where they are and can't navigate outside the modal.
 
-**Example from PR #834:**
+**Example from PR [#834](https://github.com/basecamp/fizzy/pull/834):**
 ```javascript
 // In dialog controller
 open() {
@@ -526,7 +526,7 @@ open() {
 
 **Why:** Screen readers announce selection state; provides styling hook.
 
-**Example from PR #834:**
+**Example from PR [#834](https://github.com/basecamp/fizzy/pull/834):**
 ```css
 [aria-selected] {
   outline: var(--focus-ring-size) solid var(--focus-ring-color);
@@ -547,7 +547,7 @@ select(item) {
 
 **Why:** Different components need different spacing (negative for inputs, positive for buttons).
 
-**Example from PR #695:**
+**Example from PR [#695](https://github.com/basecamp/fizzy/pull/695):**
 ```css
 input:where(:focus) {
   --focus-ring-offset: -1px; /* Inside the border */
@@ -564,7 +564,7 @@ input:where(:focus) {
 
 **Why:** Readonly fields aren't interactive; focus ring is misleading.
 
-**Example from PR #695:**
+**Example from PR [#695](https://github.com/basecamp/fizzy/pull/695):**
 ```css
 input[readonly] {
   --focus-ring-size: 0;
@@ -583,7 +583,7 @@ input[readonly] {
 
 **Why:** Ensures cross-platform consistency (e.g., Cmd vs Ctrl).
 
-**Example from PR #994:**
+**Example from PR [#994](https://github.com/basecamp/fizzy/pull/994):**
 ```ruby
 # test/helpers/hotkeys_helper_test.rb
 class HotkeysHelperTest < ActionView::TestCase
@@ -636,7 +636,7 @@ end
 
 **Why:** Users expect platform conventions.
 
-**Example from PR #994:**
+**Example from PR [#994](https://github.com/basecamp/fizzy/pull/994):**
 ```ruby
 def hotkey_label(hotkey)
   hotkey.map do |key|
@@ -663,7 +663,7 @@ end
 
 **Why:** Touch devices don't have hover; don't rely on it for critical interactions.
 
-**Example from PR #695:**
+**Example from PR [#695](https://github.com/basecamp/fizzy/pull/695):**
 ```css
 @media (any-hover: hover) {
   button:hover {
@@ -734,7 +734,7 @@ Combines multiple techniques:
 
 ### 35. Accessible Tray/Drawer Pattern
 
-From PR #834:
+From PR [#834](https://github.com/basecamp/fizzy/pull/834):
 
 ```erb
 <section class="tray" data-controller="dialog">

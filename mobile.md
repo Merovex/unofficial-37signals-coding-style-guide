@@ -198,7 +198,7 @@ This guide documents transferable lessons and patterns for building responsive, 
 
 **Why it matters:** Centralize responsive behavior; reduce duplication.
 
-**From:** PR #597, #604
+**From:** PR [#597](https://github.com/basecamp/fizzy/pull/597), #604
 
 ```css
 :root {
@@ -230,7 +230,7 @@ This guide documents transferable lessons and patterns for building responsive, 
 
 **Why it matters:** Columns separated by whitespace don't need borders; stacked sections do.
 
-**From:** PR #604, #881
+**From:** PR [#604](https://github.com/basecamp/fizzy/pull/604), #881
 
 ```css
 .cards--doing:before {
@@ -405,7 +405,7 @@ This guide documents transferable lessons and patterns for building responsive, 
 
 **Why it matters:** Horizontal layouts often fail on narrow screens.
 
-**From:** PR #740, #881
+**From:** PR [#740](https://github.com/basecamp/fizzy/pull/740), #881
 
 ```css
 .card__body {
